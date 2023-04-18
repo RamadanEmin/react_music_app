@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { playPause } from '../../redux/features/playerSlice';
+import Track from './Track';
 
 const MusicPlayer = () => {
     const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
