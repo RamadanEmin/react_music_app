@@ -3,10 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
 import Controls from './Controls';
+import Seekbar from './Seekbar';
 import Track from './Track';
 
 const MusicPlayer = () => {
     const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
+    const [duration, setDuration] = useState(0);
+    const [seekTime, setSeekTime] = useState(0);
+    const [appTime, setAppTime] = useState(0);
     const [repeat, setRepeat] = useState(false);
     const [shuffle, setShuffle] = useState(false);
     const dispatch = useDispatch();
@@ -60,6 +64,14 @@ const MusicPlayer = () => {
                     handlePlayPause={handlePlayPause}
                     handlePrevSong={handlePrevSong}
                     handleNextSong={handleNextSong}
+                />
+                <Seekbar
+                    value={appTime}
+                    min="0"
+                    max={duration}
+                    onInput={(event) => setSeekTime(event.target.value)}
+                    setSeekTime={setSeekTime}
+                    appTime={appTime}
                 />
             </div>
         </div>
