@@ -1,18 +1,19 @@
 import { useParams } from 'react-router-dom';
-import { Loader } from '../components';
+import { DetailsHeader, Loader } from '../components';
 
 import { useGetSongDetailsQuery } from '../redux/services/shazamCore';
 
 const SongDetails = () => {
     const { songid } = useParams();
     const { data: songData, isFetching: isFetchingSongDetails } = useGetSongDetailsQuery(songid);
-  
+
     if (isFetchingSongDetails) {
         return <Loader title="Searching song details" />;
     }
 
     return (
         <div className="flex flex-col">
+            <DetailsHeader artistId="" songData={songData} />
 
             <div className="mb-10">
                 <h2 className="text-white text-3xl font-bold">Lyrics:</h2>
