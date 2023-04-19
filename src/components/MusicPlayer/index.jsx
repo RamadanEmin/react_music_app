@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
 import Controls from './Controls';
+import Player from './Player';
 import Seekbar from './Seekbar';
 import Track from './Track';
 
@@ -11,6 +12,7 @@ const MusicPlayer = () => {
     const [duration, setDuration] = useState(0);
     const [seekTime, setSeekTime] = useState(0);
     const [appTime, setAppTime] = useState(0);
+    const [volume, setVolume] = useState(0.3);
     const [repeat, setRepeat] = useState(false);
     const [shuffle, setShuffle] = useState(false);
     const dispatch = useDispatch();
@@ -72,6 +74,17 @@ const MusicPlayer = () => {
                     onInput={(event) => setSeekTime(event.target.value)}
                     setSeekTime={setSeekTime}
                     appTime={appTime}
+                />
+                <Player
+                    activeSong={activeSong}
+                    volume={volume}
+                    isPlaying={isPlaying}
+                    seekTime={seekTime}
+                    repeat={repeat}
+                    currentIndex={currentIndex}
+                    onEnded={handleNextSong}
+                    onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
+                    onLoadedData={(event) => setDuration(event.target.duration)}
                 />
             </div>
         </div>
