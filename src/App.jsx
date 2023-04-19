@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
-import { Sidebar, MusicPlayer } from './components';
+import { Sidebar, MusicPlayer, TopPlay } from './components';
 import { Discover } from './pages';
 
 const App = () => {
@@ -16,6 +16,9 @@ const App = () => {
                         <Routes>
                             <Route path="/" element={<Discover />} />
                         </Routes>
+                    </div>
+                    <div className="xl:sticky relative top-0 h-fit">
+                        <TopPlay />
                     </div>
                 </div>
             </div>
