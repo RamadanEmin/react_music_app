@@ -6,6 +6,7 @@ import Controls from './Controls';
 import Player from './Player';
 import Seekbar from './Seekbar';
 import Track from './Track';
+import VolumeBar from './VolumeBar';
 
 const MusicPlayer = () => {
     const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
@@ -87,6 +88,7 @@ const MusicPlayer = () => {
                     onLoadedData={(event) => setDuration(event.target.duration)}
                 />
             </div>
+            <VolumeBar value={volume} min="0" max="1" onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
         </div>
     );
 };
